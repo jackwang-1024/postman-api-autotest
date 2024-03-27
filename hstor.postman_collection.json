@@ -1,0 +1,86 @@
+{
+	"info": {
+		"_postman_id": "bf24752b-c974-4c81-ba1c-fa96db38a5dd",
+		"name": "hstor",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5139806",
+		"_collection_link": "https://gold-star-265542.postman.co/workspace/Team-Workspace~00fc3f78-28c0-45ac-862f-5b15f45e4c6a/collection/5139806-bf24752b-c974-4c81-ba1c-fa96db38a5dd?action=share&source=collection_link&creator=5139806"
+	},
+	"item": [
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsondate=pm.response.json();\r",
+							"var access_token = jsondate.access_token;\r",
+							"var token_type = jsondate.token_type;\r",
+							"pm.globals.set(\"gb_access_token\",access_token);\r",
+							"pm.globals.set(\"gb_token_type\", token_type);\r",
+							"\r",
+							"pm.test(\"check Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"test token type\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.token_type).to.eql(\"bearer\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic aGNkLWNsaWVudDpoY2Qtc2VjcmV0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "https://172.16.202.206/oauth/token?username=admin&password=Hello123!&grant_type=password",
+					"protocol": "https",
+					"host": [
+						"172",
+						"16",
+						"202",
+						"206"
+					],
+					"path": [
+						"oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "admin"
+						},
+						{
+							"key": "password",
+							"value": "Hello123!"
+						},
+						{
+							"key": "grant_type",
+							"value": "password"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
