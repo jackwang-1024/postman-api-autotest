@@ -81,6 +81,59 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "get sp",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsondate=pm.response.json();\r",
+							"var clusterId=jsondate.data[0].clusterId;\r",
+							"pm.globals.set(\"gb_clusterId\",clusterId);\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "authorization",
+						"value": "{{gb_token_type}} {{gb_access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{ip}}/v1/clusters?clusterType=regular",
+					"protocol": "https",
+					"host": [
+						"{{ip}}"
+					],
+					"path": [
+						"v1",
+						"clusters"
+					],
+					"query": [
+						{
+							"key": "clusterType",
+							"value": "regular"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
