@@ -116,10 +116,13 @@
 					}
 				],
 				"url": {
-					"raw": "https://{{ip}}/v1/clusters?clusterType=regular",
+					"raw": "https://172.16.202.206/v1/clusters?clusterType=regular",
 					"protocol": "https",
 					"host": [
-						"{{ip}}"
+						"172",
+						"16",
+						"202",
+						"206"
 					],
 					"path": [
 						"v1",
